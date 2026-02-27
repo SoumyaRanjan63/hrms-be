@@ -101,4 +101,3 @@ http://127.0.0.1:8000/
 * Single admin user; authentication is not implemented.
 * Attendance is recorded once per employee per date.
 * Employee deletion is restricted if attendance records exist.
-# hrms-be
