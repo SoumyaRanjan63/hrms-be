@@ -1,3 +1,1 @@
-"""
-Serializers package for the employees app.
-"""
+from .employee_serializer import EmployeeSerializer
