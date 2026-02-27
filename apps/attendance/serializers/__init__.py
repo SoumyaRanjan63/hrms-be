@@ -1,3 +1,1 @@
-"""
-Serializers package for the attendance app.
-"""
+from .attendance_serializer import AttendanceSerializer

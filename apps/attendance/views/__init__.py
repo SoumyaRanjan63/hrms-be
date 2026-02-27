@@ -1,3 +1,1 @@
-"""
-Views package for the attendance app.
-"""
+from apps.attendance.views.attendance_views import AttendanceViewSet

@@ -1,3 +1,1 @@
-"""
-Models package for the attendance app.
-"""
+from .attendance import Attendance
