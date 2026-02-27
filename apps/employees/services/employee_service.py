@@ -9,12 +9,9 @@ def create_employee(data: dict) -> Employee:
     return employee
 
 
-def delete_employee(employee_id: int) -> None:
-    employee = Employee.objects.filter(id=employee_id).first()
+def delete_employee(employee: Employee) -> None:
     if not employee:
         raise ValueError("Employee not found")
 
-    if employee.attendances.exists():
-        raise ValueError("Cannot delete employee with attendance records")
-
-    employee.delete()
+    employee.is_active = False
+    employee.save(update_fields=["is_active"])

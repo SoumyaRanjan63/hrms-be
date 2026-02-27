@@ -27,10 +27,7 @@ class EmployeeViewSet(ModelViewSet):
             return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, *args, **kwargs):
-        employee_id = kwargs.get(self.lookup_field)
-        try:
-            delete_employee(employee_id)
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except ValueError as e:
-            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+         instance = self.get_object()
+         delete_employee(instance)
+         return Response(status=status.HTTP_204_NO_CONTENT)
 

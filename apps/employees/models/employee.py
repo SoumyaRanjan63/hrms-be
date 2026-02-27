@@ -7,6 +7,7 @@ class Employee(models.Model):
     email = models.EmailField(unique=True)
     department = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.employee_id} - {self.full_name}'

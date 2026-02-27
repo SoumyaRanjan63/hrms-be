@@ -4,7 +4,7 @@ from apps.employees.models.employee import Employee
 
 
 def get_all_employees():
-    return Employee.objects.order_by("-created_at")
+     return Employee.objects.filter(is_active=True)
 
 
 def get_employee_by_id(employee_id: int) -> Optional[Employee]:
