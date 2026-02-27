@@ -1,3 +1,1 @@
-"""
-Query/selectors layer for the employees app.
-"""
+from .employee_selector import get_all_employees, get_employee_by_id
