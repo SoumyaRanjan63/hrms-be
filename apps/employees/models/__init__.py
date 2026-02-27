@@ -1,3 +1,1 @@
-"""
-Models package for the employees app.
-"""
+from .employee import Employee
