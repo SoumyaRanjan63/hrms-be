@@ -15,3 +15,6 @@ class Attendance(models.Model):
     date = models.DateField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ["employee", "date"]
