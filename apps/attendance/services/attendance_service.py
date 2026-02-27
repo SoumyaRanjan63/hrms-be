@@ -3,6 +3,12 @@ from apps.attendance.serializers.attendance_serializer import AttendanceSerializ
 
 
 def create_attendance(data: dict) -> Attendance:
+    employee = data.get("employee")
+    date = data.get("date")
+
+    if Attendance.objects.filter(employee=employee, date=date).exists():
+        raise ValueError("Attendance already marked for this date")
+
     serializer = AttendanceSerializer(data=data)
     serializer.is_valid(raise_exception=True)
     attendance = serializer.save()

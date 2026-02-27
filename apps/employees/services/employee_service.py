@@ -10,4 +10,11 @@ def create_employee(data: dict) -> Employee:
 
 
 def delete_employee(employee_id: int) -> None:
-    Employee.objects.filter(id=employee_id).delete()
+    employee = Employee.objects.filter(id=employee_id).first()
+    if not employee:
+        raise ValueError("Employee not found")
+
+    if employee.attendances.exists():
+        raise ValueError("Cannot delete employee with attendance records")
+
+    employee.delete()

@@ -22,13 +22,19 @@ class AttendanceViewSet(ModelViewSet):
         return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
-        attendance = create_attendance(request.data)
-        serializer = self.get_serializer(attendance)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        try:
+            attendance = create_attendance(request.data)
+            serializer = self.get_serializer(attendance)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        except ValueError as e:
+            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, *args, **kwargs):
         attendance_id = kwargs.get(self.lookup_field)
-        delete_attendance(attendance_id)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        try:
+            delete_attendance(attendance_id)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except ValueError as e:
+            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
